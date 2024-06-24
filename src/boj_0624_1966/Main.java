@@ -4,11 +4,10 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static List<Node> q;
 
     private static int N, M;
-    private static List<Node> data;
 
     public static void main(String[] args) throws IOException {
         solve();
@@ -17,60 +16,61 @@ public class Main {
     public static void setting() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());   //문서의 개수
-        M = Integer.parseInt(st.nextToken());   //찾는 문서 idx
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        data = new ArrayList<>();
+        q = new ArrayList<>();
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            int val = Integer.parseInt(st.nextToken());
+            int value = Integer.parseInt(st.nextToken());
 
-            data.add(new Node(val, i));
+            q.add(new Node(value, i));
         }
     }
 
     public static void solve() throws IOException {
         StringBuilder sb = new StringBuilder();
 
-        int T = Integer.parseInt(br.readLine());
+        int testCase = Integer.parseInt(br.readLine());
 
-
-        while (T-- > 0) {
-            setting();
+        while (testCase-- > 0) {
             int count = 0;
+            setting();
 
-            while(!data.isEmpty()) {
-                Node first = data.remove(0);
+            while (!q.isEmpty()) {
+                Node first = q.remove(0);
                 boolean isMoved = false;
 
-                for (Node node : data) {
-                    if (first.val < node.val) {
-                        data.add(first);
+                for (Node node : q) {
+                    if (first.value < node.value) {
+                        q.add(first);
 
                         isMoved = true;
                         break;
                     }
                 }
-
                 if (!isMoved) {
                     count++;
 
-                    if (first.idx == M) {
+                    if (first.index == M) {
                         sb.append(count).append("\n");
+                        break;
                     }
                 }
             }
         }
-        System.out.println(sb);
+
+        System.out.print(sb);
     }
 
-    private static class Node {
-        int val, idx;
+    static class Node {
+        int value;
+        int index;
 
-        public Node(int val, int idx) {
-            this.val = val;
-            this.idx = idx;
+        public Node(int value, int index) {
+            this.value = value;
+            this.index = index;
         }
     }
 }
