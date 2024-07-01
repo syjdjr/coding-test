@@ -52,7 +52,6 @@ public class Main {
                         continue;
                     }
 
-                    count++;
 
                     Queue<Node> q = new LinkedList<>();
                     q.add(new Node(i,j));
@@ -79,6 +78,8 @@ public class Main {
                             isVisit[dr][dc] = true;
                         }
                     }
+                    count++;
+
                 }
             }
             max = Math.max(max,count);
