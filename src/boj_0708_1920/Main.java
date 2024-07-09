@@ -50,3 +50,4 @@ public class Main {
 }
 
 //Collections 의 binarySearch 는 찾는 값이 없으면 음수를 반환한다.
+//set으로도 해보기.
