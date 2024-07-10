@@ -5,9 +5,10 @@ import java.io.*;
 
 public class Main {
 
-    private static long N, K = Integer.MIN_VALUE, count;
+    private static long N;
+    private static long K = Integer.MIN_VALUE;
     private static long max;
-    private static List<Integer> data = new ArrayList<>();
+    private static final List<Integer> data = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         setting();
@@ -37,7 +38,7 @@ public class Main {
 
         while (left < right) {
             mid = (left + right) / 2;
-            count = 0;
+            long count = 0;
 
             for (int i = 0; i < K; i++) {
                 count += data.get(i) / mid;
