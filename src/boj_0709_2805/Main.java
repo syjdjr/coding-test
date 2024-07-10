@@ -17,8 +17,8 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());       //나무의 수
+        M = Integer.parseInt(st.nextToken());       //자른 나무의 최소값
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
@@ -31,27 +31,26 @@ public class Main {
     public static void solve() {
         int left = 0;
         int right = max;
-        int height = 0;
 
-        while(left <= right) {
+        while (left < right) {
+
             int mid = (left + right) / 2;
+            long sum = 0;        //자른 나무의 총합
 
-            long sum = 0;
-            for (int i : data) {
-                if (i > mid) {
-                    sum += (i - mid);
+            for (int i = 0; i < N; i++) {
+                if (data.get(i) - mid > 0) {
+                    sum += data.get(i) - mid;
                 }
             }
 
-            if (M <= sum) {
+            if (sum >= M) {
                 left = mid + 1;
-                height = mid;
-
             } else {
-                right = mid - 1;
+                right = mid;
             }
         }
-
-        System.out.println(height);
+        System.out.println(left-1);
+        //upper bound 당연히 출력할때 right - 1, left - 1
     }
 }
+// 최솟값 구하는 경우 아니면 upper bound 를 사용해준다.
