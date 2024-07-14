@@ -4,7 +4,6 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-
     private static int N, M;
     private static int[] data;
     private static boolean[] isVisit;
