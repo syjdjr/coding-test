@@ -6,7 +6,7 @@ import java.io.*;
 public class Main {
 
     private static int N, M, start, count;
-    private static List<Integer>[] map;
+    private static List<List<Integer>> map;
     private static Queue<Integer> q = new LinkedList<>();
     private static boolean[] isVisit;
 
@@ -24,9 +24,9 @@ public class Main {
 
         isVisit = new boolean[N + 1];
 
-        map = new LinkedList[N + 1];
+        map = new ArrayList<>(N + 1);
         for (int i = 0; i <= N; i++) {
-            map[i] = new LinkedList<>();
+            map.add(new LinkedList<>());
         }
 
         for (int i = 0; i < M; i++) {
@@ -34,7 +34,7 @@ public class Main {
             int A = Integer.parseInt(st.nextToken());
             int B = Integer.parseInt(st.nextToken());
 
-            map[B].add(A);
+            map.get(B).add(A);
         }
 
         start = Integer.parseInt(br.readLine());    //시작 정점
@@ -49,7 +49,7 @@ public class Main {
         while (!q.isEmpty()) {
             int vertex = q.poll();
 
-            for (int i : map[vertex]) {
+            for (int i : map.get(vertex)) {
 
                 if (isVisit[i]) {
                     continue;
