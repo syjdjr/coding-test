@@ -5,12 +5,10 @@ import java.io.*;
 
 public class Main {
 
-    private static int N, M, K, X;
-    private static List<Node>[] map;
+    private static int K;
+    private static int X;
+    private static final List<List<Integer>> map = new ArrayList<>();
     private static boolean[] visited;
-    private static int[] dist;
-
-    private static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         setting();
@@ -21,67 +19,60 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
         X = Integer.parseInt(st.nextToken());
 
-        map = new ArrayList[N + 1];
-        visited = new boolean[N + 1];
-        dist = new int[N + 1];
+        visited = new boolean[n + 1];
 
-        for (int i = 0; i <= N; i++){
-            map[i] = new ArrayList<>();
+        for (int i = 0; i <= n; i++){
+            map.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
 
             int A = Integer.parseInt(st.nextToken());
             int B = Integer.parseInt(st.nextToken());
 
-            map[A].add(new Node(B,0));
+            map.get(A).add(B);
         }
     }
 
     public static void solve() {
-        Queue<Node> q = new PriorityQueue<>();
+        List<Integer> result = new ArrayList<>();
 
-        Node node = new Node(X, 0);
-        q.add(node);
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(X, 0));
         visited[X] = true;
-        dist[X] = 0;
-        int distance = 0;
 
         while (!q.isEmpty()) {
-            Node vertex = q.poll();
-            int nowNode = vertex.edge;
-            int nowDist = vertex.dist;
+            Node node = q.poll();
 
-            if (nowDist == K) {
-                sb.append(nowNode).append("\n");
+            if (node.dist == K) {
+                result.add(node.edge);
             }
 
-            for (Node next : map[nowNode]) {
-                int nextNode = next.edge;
-                int nextDist = distance + next.dist;
+            for (int next : map.get(node.edge)) {
+                if (visited[next])
+                    continue;
 
-                if (nextDist < dist[nextNode]) {
-                    dist[nextNode] = nextDist;
-                    if (!visited[nextNode]) {
-                        visited[nextNode] = true;
-                        q.add(new Node(nextNode, nextDist));
-                    }
-                }
+                q.offer(new Node(next, node.dist + 1));
+                visited[next] = true;
             }
         }
 
 
-        if (sb.isEmpty()) {
-            sb.append(-1);
+        if (result.size() == 0) {
+            result.add(-1);
         }
 
-        System.out.println(sb);
+        Collections.sort(result);
+
+        for (int i : result) {
+            System.out.println(i);
+        }
     }
 
 
@@ -95,7 +86,6 @@ public class Main {
 
         @Override
         public int compareTo(Node node) {
-
             return this.dist - node.dist;
         }
     }
