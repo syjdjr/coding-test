@@ -6,8 +6,7 @@ import java.util.*;
 public class Main {
     private static int N, M;
     private static boolean[] isVisit;
-    private static List<Map> ladder = new ArrayList<>();    //사다리
-    private static List<Map> snake = new ArrayList<>();     //뱀
+    private static int[] Map;
 
     public static void main(String[] args) throws IOException {
         setting();
@@ -21,6 +20,13 @@ public class Main {
         N = Integer.parseInt(st.nextToken());   //사다리의 수
         M = Integer.parseInt(st.nextToken());   //뱀의수
 
+        Map = new int[101];
+        isVisit = new boolean[101];
+
+        for (int i = 1; i <= 100; i++) {
+            Map[i] = i;
+        }
+
         //사다리 정보
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -28,7 +34,7 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());   //x번 칸에 도착시
             int y = Integer.parseInt(st.nextToken());   //y번 칸으로 이동
 
-            ladder.add(new Map(x, y));
+            Map[x] = y;
         }
 
         //뱀의 정보
@@ -38,10 +44,8 @@ public class Main {
             int u = Integer.parseInt(st.nextToken());   //u번 칸에 도착시
             int v = Integer.parseInt(st.nextToken());   //v번 칸으로 이동
 
-            snake.add(new Map(u, v));
+            Map[u] = v;
         }
-
-        isVisit = new boolean[101];
     }
 
     static void solve() {
@@ -66,32 +70,13 @@ public class Main {
                     continue;
                 }
 
-                for (Map map1 : ladder) {
-                    if (next == map1.before) {
-                        next = map1.after;
-                        break;
-                    }
-                }
+               next = Map[next];
 
-                for (Map map2 : snake) {
-                    if (next == map2.before) {
-                        next = map2.after;
-                        break;
-                    }
+                if (!isVisit[next]) {
+                    q.add(new Node(next, node.dist + 1));
+                    isVisit[next] = true;
                 }
-
-                q.add(new Node(next, node.dist + 1));
-                isVisit[next] = true;
             }
-        }
-    }
-
-    static class Map {
-        int before, after;
-
-        public Map (int before, int after) {
-            this.before = before;
-            this.after = after;
         }
     }
 
