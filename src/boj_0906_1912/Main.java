@@ -30,7 +30,7 @@ public class Main {
     public static void solve() {
         int max = data[1];
 
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             dp[i] = Math.max(dp[i - 1] + data[i], data[i]);
             max = Math.max(max, dp[i]);
         }
