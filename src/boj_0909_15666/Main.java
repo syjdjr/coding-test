@@ -52,7 +52,6 @@ public class Main {
             for (int num : dp) {
                 sb.append(num).append(" ");
             }
-            sb.append("\n");
             return;
         }
 
