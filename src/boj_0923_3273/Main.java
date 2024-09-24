@@ -5,7 +5,6 @@ import java.io.*;
 
 public class Main {
     private static int N, X;
-    private static int count = 0;
     private static List<Integer> data = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
@@ -28,30 +27,24 @@ public class Main {
     }
 
     private static void solve() {
-        for(int i = 0; i < N; i++) {
-            cal(i);
-        }
-        System.out.println(count);
-    }
+        int count = 0;
 
-    private static void cal(int index) {
-        int low = index + 1;
-        int high = N - 1;
-        int mid = 0;
+        int left = 0;
+        int right = N - 1;
 
-        while (low <= high) {
-            mid = (low + high) / 2;
+        while (left < right) {
+            int sum = data.get(left) + data.get(right);
 
-            if (data.get(mid) == X - data.get(index)) {
-                count += 1;
-                break;
-            } else if (data.get(mid) < X - data.get(index)) {
-                low = mid + 1;
+            if (sum == X) {
+                count++;
+                left++;
+            } else if (sum < X) {
+                left++;
             } else {
-                high = mid - 1;
+                right--;
             }
-
-
         }
+
+        System.out.println(count);
     }
 }
