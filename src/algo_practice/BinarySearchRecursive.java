@@ -7,7 +7,7 @@ public class BinarySearchRecursive {
 
     public static void main(String[] args) {
         findX = 5;
-        S = new int[]{1,2,3,4,5,6,7,8,9,10};
+        S = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         n = 10;
 
         binarySearch(1, n);
@@ -16,7 +16,7 @@ public class BinarySearchRecursive {
     private static void binarySearch(int low, int high) {
         int mid = 0;
 
-        if(low > high) {
+        if (low > high) {
             System.out.println(0);
         } else {
             mid = (low + high) / 2;
@@ -27,6 +27,7 @@ public class BinarySearchRecursive {
             } else {
                 binarySearch(mid + 1, high);
             }
-        };
+        }
+        ;
     }
 }

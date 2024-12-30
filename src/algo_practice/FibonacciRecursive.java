@@ -10,7 +10,6 @@ public class FibonacciRecursive {
 
         int result = fibonacci(n);
         System.out.println(result);
-
     }
 
     private static int fibonacci(int n) {
