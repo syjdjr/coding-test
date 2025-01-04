@@ -7,7 +7,7 @@ class Solution2 {
         int[] answer = new int[numbers.length];
         Arrays.fill(answer, -1);
 
-        PriorityQueue<Node> minHeap = new PriorityQueue<>((nowNum, newNum) -> nowNum.value - newNum.value);
+        PriorityQueue<Node> minHeap = new PriorityQueue<>();
 
         for (int i = 0; i <  numbers.length; i++) {
             while (!minHeap.isEmpty() && minHeap.peek().value < numbers[i]) {
@@ -21,12 +21,17 @@ class Solution2 {
         return answer;
     }
 
-    static class Node {
+    static class Node implements Comparable<Node> {
         int index, value;
 
         public Node(int index, int value) {
             this.index = index;
             this.value = value;
+        }
+
+        @Override
+        public int compareTo(Node newNode){
+            return this.value - newNode.value;
         }
     }
 }
