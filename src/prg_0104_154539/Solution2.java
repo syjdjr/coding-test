@@ -7,21 +7,26 @@ class Solution2 {
         int[] answer = new int[numbers.length];
         Arrays.fill(answer, -1);
 
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((nowNum, newNum) -> nowNum[1] - newNum[1]);
+        PriorityQueue<Node> minHeap = new PriorityQueue<>((nowNum, newNum) -> nowNum.value - newNum.value);
 
         for (int i = 0; i <  numbers.length; i++) {
-            while (!minHeap.isEmpty() && minHeap.peek()[1] < numbers[i]) {
-                int[] top = minHeap.poll();
-                answer[top[0]] = numbers[i];
+            while (!minHeap.isEmpty() && minHeap.peek().value < numbers[i]) {
+                Node node = minHeap.poll();
+                answer[node.index] = numbers[i];
             }
 
-            int[] node = new int[2];
-            node[0] = i;
-            node[1] = numbers[i];
-
-            minHeap.offer(node);
+            minHeap.offer(new Node(i, numbers[i]));
         }
 
         return answer;
+    }
+
+    static class Node {
+        int index, value;
+
+        public Node(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
     }
 }
