@@ -2,7 +2,7 @@ package prg_0104_154539;
 
 import java.util.*;
 
-class Solution {
+class Solution2 {
     public int[] solution(int[] numbers) {
         int[] answer = new int[numbers.length];
         Arrays.fill(answer, -1);
