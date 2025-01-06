@@ -27,7 +27,7 @@ class Solution {
         Queue<Node> queue = new LinkedList<>();
         int[] Y = {1, -1, 0, 0};
         int[] X = {0, 0, -1, 1};
-        
+
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (mapsOfInt[i][j] != -1 && !canVisit[i][j]) {
