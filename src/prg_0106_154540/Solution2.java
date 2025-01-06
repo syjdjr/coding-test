@@ -18,17 +18,17 @@ class Solution2 {
             }
         }
 
-        return find(mapsOfInt, row, col);
+        return find(mapsOfInt);
     }
 
-    public List<Integer> find(int[][] mapsOfInt, int row, int col) {
-        boolean[][] canVisit = new boolean[row][col];
+    public List<Integer> find(int[][] mapsOfInt) {
+        boolean[][] canVisit = new boolean[mapsOfInt.length][mapsOfInt[0].length];
         List<Integer> answerList = new ArrayList<>();
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+        for (int i = 0; i < mapsOfInt.length; i++) {
+            for (int j = 0; j < mapsOfInt[0].length; j++) {
                 if (mapsOfInt[i][j] != -1 && !canVisit[i][j]) {
-                    int sum = dfs(mapsOfInt, canVisit, i, j, row, col);
+                    int sum = dfs(mapsOfInt, canVisit, i, j);
                     answerList.add(sum);
                 }
             }
@@ -42,11 +42,11 @@ class Solution2 {
         return answerList;
     }
 
-    public int dfs(int[][] mapsOfInt, boolean[][] canVisit, int x, int y, int row, int col) {
+    public int dfs(int[][] mapsOfInt, boolean[][] canVisit, int x, int y) {
         int[] xRow = {0, 0, -1, 1};
         int[] yCol = {1, -1, 0, 0};
 
-        if (x < 0 || x >= row || y < 0 || y >= col) {
+        if (x < 0 || x >= mapsOfInt.length || y < 0 || y >= mapsOfInt[0].length) {
             return 0;
         }
 
@@ -58,7 +58,7 @@ class Solution2 {
         int sum = mapsOfInt[x][y];
 
         for (int i = 0; i < 4; i++) {
-            sum += dfs(mapsOfInt, canVisit, x + xRow[i], y + yCol[i], row, col);
+            sum += dfs(mapsOfInt, canVisit, x + xRow[i], y + yCol[i]);
         }
 
         return sum;
