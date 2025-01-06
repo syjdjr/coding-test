@@ -31,7 +31,7 @@ class Solution {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (mapsOfInt[i][j] != -1 && !canVisit[i][j]) {
-                    queue.add(new Node(i, j, mapsOfInt[i][j]));
+                    queue.add(new Node(i, j));
                     canVisit[i][j] = true;
                     int sum = mapsOfInt[i][j];
 
@@ -47,7 +47,7 @@ class Solution {
                                 
                                 canVisit[xRow][yCol] = true;
                                 sum += mapsOfInt[xRow][yCol];
-                                queue.add(new Node(xRow, yCol, mapsOfInt[xRow][yCol]));
+                                queue.add(new Node(xRow, yCol));
                             }
                         }
                     }
@@ -69,7 +69,7 @@ class Node {
     int x;
     int y;
 
-    Node(int x, int y, int value) {
+    Node(int x, int y) {
         this.x = x;
         this.y = y;
     }
