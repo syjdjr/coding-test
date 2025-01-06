@@ -13,7 +13,9 @@ class Solution2 {
                 if (maps[i].charAt(j) == 'X') {
                     mapsOfInt[i][j] = -1;
                 } else {
-                    mapsOfInt[i][j] = maps[i].charAt(j) - '0';
+                    mapsOfInt[i][j] = Integer.parseInt(String.valueOf(maps[i].charAt(j)));  //방법1 : 타입변환 메서드 이용하기
+//                    mapsOfInt[i][j] = maps[i].charAt(j) - '0';    //방법2 : ASCII 값 이용하기 ('0' = 48)
+//                    mapsOfInt[i][j] = Integer.parseInt("" + maps[i].charAt(j));   //방법3 : 빈 문자열과 결합 이용하기
                 }
             }
         }
