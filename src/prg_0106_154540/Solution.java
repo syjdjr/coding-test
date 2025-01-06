@@ -41,14 +41,17 @@ class Solution {
                         for (int k = 0; k < 4; k++) {
                             int xRow = nowNode.x + X[k];
                             int yCol = nowNode.y + Y[k];
-                            
-                            if (xRow >= 0 && xRow < row && yCol >= 0 && yCol < col &&
-                                mapsOfInt[xRow][yCol] != -1 && !canVisit[xRow][yCol]) {
-                                
-                                canVisit[xRow][yCol] = true;
-                                sum += mapsOfInt[xRow][yCol];
-                                queue.add(new Node(xRow, yCol));
+
+                            if (xRow < 0 || xRow >= row || yCol < 0 || yCol >= col) {
+                                continue;
                             }
+                            if (mapsOfInt[xRow][yCol] == -1 || canVisit[xRow][yCol]) {
+                                continue;
+                            }
+
+                            canVisit[xRow][yCol] = true;
+                            sum += mapsOfInt[xRow][yCol];
+                            queue.add(new Node(xRow, yCol));
                         }
                     }
                     answerList.add(sum);
