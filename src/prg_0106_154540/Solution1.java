@@ -2,7 +2,7 @@ package prg_0106_154540;
 
 import java.util.*;
 
-class Solution {
+class Solution1 {
     public List<Integer> solution(String[] maps) {
         int row = maps.length;
         int col = maps[0].length();
@@ -66,14 +66,14 @@ class Solution {
 
         return answerList;
     }
-}
 
-class Node {
-    int x;
-    int y;
+    private class Node {
+        int x;
+        int y;
 
-    Node(int x, int y) {
-        this.x = x;
-        this.y = y;
+        Node(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
