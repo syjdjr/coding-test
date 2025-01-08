@@ -22,18 +22,25 @@ class Solution {
 
             isVisit[node.sum] = true;
 
-            if (node.sum + n <= y && !isVisit[node.sum + n]) {
+            if (isPromising(node.sum + n, y, isVisit)) {
                 pq.offer(new Node(node.sum + n, node.count + 1));
             }
-            if (node.sum * 2 <= y && !isVisit[node.sum * 2]) {
+            if (isPromising(node.sum * 2, y, isVisit)) {
                 pq.offer(new Node(node.sum * 2, node.count + 1));
             }
-            if (node.sum * 3 <= y && !isVisit[node.sum * 3]) {
+            if (isPromising(node.sum * 3, y, isVisit)) {
                 pq.offer(new Node(node.sum * 3, node.count + 1));
             }
         }
 
         return -1;
+    }
+
+    public boolean isPromising(int nodeNumIsSum, int y, boolean[] isVisit) {
+        if (nodeNumIsSum > y || isVisit[nodeNumIsSum]) {
+            return false;
+        }
+        return true;
     }
 
     public class Node implements Comparable<Node> {
