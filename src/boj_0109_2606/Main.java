@@ -42,7 +42,6 @@ public class Main {
         int count = 0;
 
         for (int i = 1; i <= N; i++) {
-
             if (map[1][i] && !isVisit[i]) {
                 q.offer(i);
                 isVisit[i] = true;
@@ -51,8 +50,6 @@ public class Main {
 
         while (!q.isEmpty()) {
             int now = q.poll();
-
-            System.out.println(now);
 
             isVisit[now] = true;
             count += 1;
