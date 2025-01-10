@@ -3,7 +3,7 @@ package boj_0110_2468;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main1 {
     private static int N;
     private static List<List<Integer>> map = new ArrayList<>();
     private static boolean[][] isVisit;
@@ -26,8 +26,6 @@ public class Main {
         for (int i = 0; i < N; i++) {
             map.add(new ArrayList<>());
         }
-
-        isVisit = new boolean[N][N];
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
