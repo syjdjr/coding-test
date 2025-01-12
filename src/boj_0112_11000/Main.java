@@ -45,17 +45,17 @@ public class Main {
         System.out.println(countRoom);
     }
 
-private static class Node implements Comparable<Node> {
-    int startTime, endTime;
+    private static class Node implements Comparable<Node> {
+        int startTime, endTime;
 
-    public Node(int startTime, int endTime) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
+        public Node(int startTime, int endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
 
-    @Override
-    public int compareTo(Node node) {
-        return this.startTime - node.startTime;
+        @Override
+        public int compareTo(Node node) {
+            return this.startTime - node.startTime;
+        }
     }
-}
 }
