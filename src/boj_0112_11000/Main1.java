@@ -3,7 +3,7 @@ package boj_0112_11000;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main1 {
     private static int N;
     private static Queue<Node> q = new PriorityQueue<>();
 
