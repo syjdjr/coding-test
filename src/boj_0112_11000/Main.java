@@ -24,50 +24,38 @@ public class Main {
             int b = Integer.parseInt(st.nextToken());
 
             q.offer(new Node(a, b));
-//            System.out.println(q.poll());
         }
     }
 
     private static void solve() {
         Queue<Integer> room = new PriorityQueue<>();
-        int countRoom = 1;
+        int countRoom = 0;
 
         while (!q.isEmpty()) {
             Node node = q.poll();
+            room.offer(node.endTime);
 
-            Integer firstFinishRoom = room.peek();
-            if (firstFinishRoom == null) {
-                room.offer(node.endTime);
+            if (!room.isEmpty() && node.startTime < room.peek()) {
+                countRoom += 1;
             } else {
-                room.offer(node.endTime);
-
-                if (node.startTime < firstFinishRoom) {
-                    countRoom += 1;
-                } else {
-                    room.poll();
-                }
+                room.poll();
             }
         }
 
         System.out.println(countRoom);
     }
 
-    private static class Node implements Comparable<Node> {
-        int startTime, endTime;
+private static class Node implements Comparable<Node> {
+    int startTime, endTime;
 
-        public Node(int startTime, int endTime) {
-            this.startTime = startTime;
-            this.endTime = endTime;
-        }
-
-        @Override
-        public int compareTo(Node node) {
-            return this.startTime - node.startTime;
-        }
-
-//        @Override
-//        public String toString() {
-//            return "start : " + startTime + "end : " + endTime;
-//        }
+    public Node(int startTime, int endTime) {
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
+
+    @Override
+    public int compareTo(Node node) {
+        return this.startTime - node.startTime;
+    }
+}
 }
