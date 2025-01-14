@@ -24,20 +24,17 @@ public class Main {
     }
 
     private static void solve() {
-        int answer = 4;
-
-        int right = N - 1;
+        int answer = 5;
         int left = 0;
 
-        while (left < right) {
-            if (list.get(right) - list.get(left) > 4) {
-                right--;
-            } else {
-                answer = Math.min(answer, 4 - (right - left));
+        for (int right = 0; right < N; right++) {
+            while (list.get(right) - list.get(left) > 4) {
                 left++;
             }
+            answer = Math.min(answer, 5 - (right - left + 1));
         }
 
         System.out.println(answer);
     }
 }
+
