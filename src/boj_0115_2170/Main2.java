@@ -3,7 +3,7 @@ package boj_0115_2170;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main2 {
     private static int N;
     private static List<Node> list = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class Main {
 
             list.add(new Node(x, y));
         }
-        Collections.sort(list);
+        Collections.sort(list, (o1, o2) -> {return o1.left - o2.left;});
     }
 
     private static void solve() {
@@ -49,17 +49,12 @@ public class Main {
         System.out.println(length);
     }
 
-    private static class Node implements Comparable<Node> {
+    private static class Node {
         int left, right;
 
         public Node(int left, int right) {
             this.left = left;
             this.right = right;
-        }
-
-        @Override
-        public int compareTo(Node node) {
-            return this.left - node.left;
         }
     }
 }
